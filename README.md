@@ -26,3 +26,7 @@ conda activate deepspech_pytorch_env
 ```
 
 - To download only specific dataset for training ```cd data && python librispeech.py --files-to-use=train-clean-100.tar.gz```
+
+## Misc fixes
+
+- ```sudo -E PATH=$PATH``` to pass environment variables under sudo for NVProf

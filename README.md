@@ -25,3 +25,4 @@ conda activate deepspech_pytorch_env
    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 ```
 
+- To download only specific dataset for training ```cd data && python librispeech.py --files-to-use=train-clean-100.tar.gz```

@@ -30,3 +30,4 @@ conda activate deepspech_pytorch_env
 ## Misc fixes
 
 - ```sudo -E PATH=$PATH``` to pass environment variables under sudo for NVProf
+- Run this to avoid conda auto-activate ```conda config --set auto_activate_base false```

@@ -4,7 +4,7 @@
 - [2. DeepSpeech PyTorch implementation from here](#2-deepspeech-pytorch-implementation-from-here)
 - [3. Profiling](#3-profiling)
 - [4. Variations](#4-variations)
-- [5. Handy tips](#5-handy-tips)
+- [5. Reference](#5-reference)
 - [6. Results](#6-results)
   - [6.1. Task 1](#61-task-1)
   - [6.2. Task 2](#62-task-2)
@@ -95,7 +95,7 @@ pip install -e . # Dev install
 - Precision: 16/32/64 flop_count_dp,flop_count_sp,
 - Use inference
 
-## 5. Handy tips
+## 5. Reference
 
 - ```sudo -E env PATH=$PATH``` to pass environment variables under sudo for NVProf
 - Run this to avoid conda auto-activate ```conda config --set auto_activate_base false```
@@ -104,6 +104,8 @@ pip install -e . # Dev install
 - How to pass kwargs (useful for pytorch lightning profiler):
   - [Dealing with kwargs on python](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
   - [Source code](https://github.com/PyTorchLightning/pytorch-lightning/blob/master/pytorch_lightning/profiler/pytorch.py#L330)
+- Handy tips on using nvprof on ML profiling my mcarilli's [gist](https://gist.github.com/mcarilli/213a4e698e4a0ae2234ddee56f4f3f95)
+- [Dealing with multiple kernel names on nvprof](https://forums.developer.nvidia.com/t/nvprof-to-profile-multiple-kernel-names/72289)
 
 ## 6. Results
 

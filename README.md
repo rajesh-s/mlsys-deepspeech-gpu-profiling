@@ -13,8 +13,6 @@
 
 ## 1. Objective
 
-LSTM_elementWise_bp1,elemWiseRNNcell,gemm,wgrad
-
 Profiling study of DeepSpeech on P100 as a part of CS 839 Advanced Machine Learning Systems, Spring 2022 with Prof. Shivaram Venkataraman
 
 - Task 1, ML Model Bottlenecks: Given the default training setup in your ML model, which kernels (and correspondingly ML model layers) take the longest fraction of time? What is the GPU utilization for these kernels? You can quantify **utilization using occupancy** for each kernel.  For kernels which take the longest time, what are their bottlenecks? Discuss if it is related to compute / memory using relevant data from profiling.
@@ -64,7 +62,11 @@ pip install -e . # Dev install
 
 - [x] **Nvprof**
   - [x] summary: Time spent on each call ```sudo -E env PATH=$PATH nvprof --profile-from-start off --log-file nvprof_summary/bs1-fp32 python train.py +configs=librispeech```
-  - metrics: ```sudo -E env PATH=$PATH nvprof --metrics achieved_occupancy,sm_efficiency,cf_executed,ipc --log-file task1_metrics python train.py +configs=librispeech```. Captured with 5 steps instead of 10, granularity at training_step() because the profiler would not converge within 10minutes
+  - [x] metrics: ```sudo -E env PATH=$PATH nvprof --profile-from-start off --kernels "wgrad|sgemm|LSTM|RNN" --metrics achieved_occupancy,ipc,sm_efficiency --log-file metr/bs64-fp32 python train.py +configs=librispeech```. Captured with 5 steps instead of 10, granularity at training_step() because the profiler would not converge within 10minutes
+    - Several reports of nvprof being slow especially when memory utilization metrics are enabled. [Example](https://forums.developer.nvidia.com/t/nvprof-is-too-slow/50242/9)
+    - Using only top 2 kernels that attribute to 70% of execution time: ```sudo -E env PATH=$PATH nvprof --profile-from-start off --kernels "maxwell_fp16_sgemm_fp16_128x32_nn|maxwell_fp16_sgemm_fp16_32x128_nt" --metrics achieved_occupancy,ipc,sm_efficiency --log-file metr/bs64-fp32-top2only python train.py +configs=librispeech```
+    - Only profile first invocation of all kernels: ```sudo -E env PATH=$PATH nvprof --profile-from-start off --kernels ":::1" --metrics achieved_occupancy,ipc,sm_efficiency --log-file first_invocation_final/bs64-fp32python train.py +configs=librispeech```
+    - Even this does not converge after 60+ minutes. [Screenshot](images/stuck.jpg) ```sudo -E env PATH=$PATH nvprof --profile-from-start off --kernels ":::1" --metrics dram_utilization --log-file first_invocation_final_dram/bs64-fp64 python train.py +configs=librispeech```
   - [x] trace: Kernel launch parameter ```sudo -E env PATH=$PATH nvprof --profile-from-start off --print-gpu-trace --log-file nvprof_trace/bs1-fp32 python train.py +configs=librispeech```. Captured with 5 steps instead of 10
   - nvvp: Images use analysis metrics only on top 5 kernels
     - Focussed profiling on ```training_step``` (in model.py) or ```train.fit()``` (in training.py) cudaStart/Stop -> This works. About 25% savings in nvvp dumps and faster runtime
@@ -100,9 +102,11 @@ pip install -e . # Dev install
 
 ## 5. Reference
 
+- To select a specific GPU, use ```export CUDA_VISIBLE_DEVICES=1```
 - ```sudo -E env PATH=$PATH``` to pass environment variables under sudo for NVProf
 - Run this to avoid conda auto-activate ```conda config --set auto_activate_base false```
 - Get torch version inside python ```import torch print(torch.__version__)```
+- You can kill GPU processes by using the PID from nvidia-smi
 - Focussed profiling on CUDA [reference](https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59), [2](https://gist.github.com/mcarilli/213a4e698e4a0ae2234ddee56f4f3f95)
 - How to pass kwargs (useful for pytorch lightning profiler):
   - [Dealing with kwargs on python](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
@@ -110,6 +114,11 @@ pip install -e . # Dev install
 - Handy tips on using nvprof on ML profiling my mcarilli's [gist](https://gist.github.com/mcarilli/213a4e698e4a0ae2234ddee56f4f3f95)
 - [Dealing with multiple kernel names on nvprof](https://forums.developer.nvidia.com/t/nvprof-to-profile-multiple-kernel-names/72289)
 - [Exporting nvprof output to file](https://forums.developer.nvidia.com/t/nvprof-export-to-txt/168955/8)
+- Note that profiling of metric and event is only supported up to the Volta architecture through Nvprof. The Turing architecture Nvprof only supports tracing functionality. Use Nsight Compute instead to show profiling metrics on Turing.
+- Kernel replay is required when you are collecting a lot of metrics. This is because only a few metrics can be collected at a time by the profiler. The problem of course is that it means the kernel has to be replayed many times to finish data collection. So this will finish but it will take a long time. Things you can do to speed it up: collect fewer metrics (specify the metrics you want one at a time) or run fewer iterations (this means fewer kernels).
+- Analysis metrics: By default nvprof doesn't collect any metrics. So while the visual profiler can show the timeline you can't drill down into the metrics for each kernel. You can collect metrics by passing `--analysis-metrics`
+- nvtx annotations were not possible since lightning library abstracts away most of the steps
+
 
 Some helpful links that describe nvprof profiler include
 https://github.com/mit-satori/getting-started/blob/master/tutorial-examples/nvprof-profiling/Satori_NVProf_Intro.pdf 

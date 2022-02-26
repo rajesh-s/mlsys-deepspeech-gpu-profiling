@@ -1,0 +1,5 @@
+==34004== NVPROF is profiling process 34004, command: python test.py model.model_path=librispeech_pretrained_v3.ckpt test_path=data/libri_test_clean_manifest.json
+==34004== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==34004== Profiling application: python test.py model.model_path=librispeech_pretrained_v3.ckpt test_path=data/libri_test_clean_manifest.json
+==34004== Profiling result:
+No events/metrics were profiled.

@@ -1,0 +1,15 @@
+==47541== NVPROF is profiling process 47541, command: python train.py +configs=librispeech
+==47541== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==47541== Profiling application: python train.py +configs=librispeech
+==47541== Profiling result:
+==47541== Metric result:
+Invocations                               Metric Name                        Metric Description         Min         Max         Avg
+Device "Tesla P100-PCIE-16GB (0)"
+    Kernel: maxwell_fp16_sgemm_fp16_32x128_nt
+       1255                        achieved_occupancy                        Achieved Occupancy    0.455213    0.486074    0.472078
+       1255                                       ipc                              Executed IPC    1.203480    2.309509    1.994875
+       1255                             sm_efficiency                   Multiprocessor Activity      89.45%      97.48%      94.22%
+    Kernel: maxwell_fp16_sgemm_fp16_128x32_nn
+      53832                        achieved_occupancy                        Achieved Occupancy    0.124966    0.153094    0.132269
+      53832                                       ipc                              Executed IPC    1.303251    1.638490    1.450637
+      53832                             sm_efficiency                   Multiprocessor Activity      13.66%      99.09%      55.45%

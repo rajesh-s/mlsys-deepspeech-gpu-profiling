@@ -8,8 +8,6 @@
 - [6. Results](#6-results)
   - [6.1. Task 1](#61-task-1)
   - [6.2. Task 2](#62-task-2)
-  - [6.3. Task 3](#63-task-3)
-  - [6.4. Task 4](#64-task-4)
 
 ## 1. Objective
 
@@ -75,7 +73,6 @@ pip install -e . # Dev install
 - [x] **PyTorch**: Simple -> Forward vs Backward time allocation and split up of each stage in training
 - [x] **PyTorchProfiler**(): ```sudo -E env PATH=$PATH python train.py +configs=librispeech```
   - Instrumentation for Pytorch Profiler:
-
     ```python
     profiler = PyTorchProfiler(dirpath = "/home/cc/data", filename = "./bs-16", export_to_chrome = True, {"profile_memory":True})
     ```
@@ -84,8 +81,8 @@ pip install -e . # Dev install
   - [Pytorch profiler recipes](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)
   - [Lightning Profiler docs](https://pytorch-lightning.readthedocs.io/en/stable/advanced/profiler.html)
   - [Torch profiler docs](https://pytorch.org/docs/stable/profiler.html)
-  - 
   - PyTorch Profiler gives forwards vs backward information in Trace
+  - To view results on the dashboard: ```pip install torch_tb_profiler tensorboard``` and use ```tensorboard --logdir=./dir```
 
 **TBD**:
 
@@ -119,21 +116,16 @@ pip install -e . # Dev install
 - Analysis metrics: By default nvprof doesn't collect any metrics. So while the visual profiler can show the timeline you can't drill down into the metrics for each kernel. You can collect metrics by passing `--analysis-metrics`
 - nvtx annotations were not possible since lightning library abstracts away most of the steps
 
-
-Some helpful links that describe nvprof profiler include
-https://github.com/mit-satori/getting-started/blob/master/tutorial-examples/nvprof-profiling/Satori_NVProf_Intro.pdf 
-https://developer.nvidia.com/blog/cuda-pro-tip-nvprof-your-handy-universal-gpu-profiler/
-https://gist.github.com/sonots/5abc0bccec2010ac69ff74788b265086
-
-You are also welcome to use other profiling tools such as PyProf https://github.com/NVIDIA/PyProf and the PyTorch profiler https://pytorch.org/blog/introducing-pytorch-profiler-the-new-and-improved-performance-tool/
-
-GPU architecture details can be found at
-https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf
-Tasks
+Some helpful links that describe nvprof profiler include:
+- https://github.com/mit-satori/getting-started/blob/master/tutorial-examples/nvprof-profiling/Satori_NVProf_Intro.pdf 
+- https://developer.nvidia.com/blog/cuda-pro-tip-nvprof-your-handy-universal-gpu-profiler/
+- https://gist.github.com/sonots/5abc0bccec2010ac69ff74788b265086
+- https://github.com/NVIDIA/PyProf 
+- https://pytorch.org/blog/introducing-pytorch-profiler-the-new-and-improved-performance-tool/
 
 ## 6. Results
 
-To be updated after analyzing logs
+Profiling results and analysis are captured in the [attached document](AnalysisReport.pdf)
 
 ### 6.1. Task 1
 
@@ -146,7 +138,3 @@ To be updated after analyzing logs
 
 - On batch size of 128 with P100, we get the following issue: ```RuntimeError: CUDA out of memory. Tried to allocate 1.29 GiB (GPU 0; 15.90 GiB total capacity; 13.46 GiB already allocated; 979.81 MiB free; 13.94 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation. See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF```
 - From this, we infer that P100 cannot handle batch sizes greater than 64 on DeepSpeech model
-
-### 6.3. Task 3
-
-### 6.4. Task 4

@@ -1,0 +1,31 @@
+==42800== NVPROF is profiling process 42800, command: python train.py +configs=librispeech
+==42800== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==42800== Profiling application: python train.py +configs=librispeech
+==42800== Profiling result:
+==42800== Metric result:
+Invocations                               Metric Name                        Metric Description         Min         Max         Avg
+Device "Tesla P100-PCIE-16GB (0)"
+    Kernel: maxwell_fp16_sgemm_fp16_32x128_nn
+         28                        achieved_occupancy                        Achieved Occupancy    0.498233    0.498779    0.498542
+         28                                       ipc                              Executed IPC    2.284045    2.289891    2.285591
+         28                             sm_efficiency                   Multiprocessor Activity      99.51%      99.82%      99.68%
+    Kernel: void elemWiseRNNcell<__half, __half, float, cudnnRNNMode_t=2, cudnnRNNBiasMode_t=2>(int, int, int, int, int, bool, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half*, __half*, __half*, __half*, __half*, cudnnRNNClipMode_t, cudnnNanPropagation_t, float, float)
+      27842                        achieved_occupancy                        Achieved Occupancy    0.115701    0.536601    0.228512
+      27842                                       ipc                              Executed IPC    0.532905    1.609808    0.976765
+      27842                             sm_efficiency                   Multiprocessor Activity       1.51%      68.84%      35.90%
+    Kernel: void implicit_convolve_sgemm<__half, __half, int=128, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+          6                        achieved_occupancy                        Achieved Occupancy    0.105803    0.158608    0.132473
+          6                                       ipc                              Executed IPC    1.325031    1.552314    1.443248
+          6                             sm_efficiency                   Multiprocessor Activity      82.76%      89.69%      85.62%
+    Kernel: maxwell_fp16_sgemm_fp16_128x32_nn
+      26618                        achieved_occupancy                        Achieved Occupancy    0.124966    0.147047    0.132647
+      26618                                       ipc                              Executed IPC    1.304525    1.570899    1.441166
+      26618                             sm_efficiency                   Multiprocessor Activity      51.08%      83.00%      63.02%
+    Kernel: void precomputed_convolve_sgemm<__half, int=1024, int=5, int=5, int=4, int=3, int=3, int=1, bool=0>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, int*)
+          3                        achieved_occupancy                        Achieved Occupancy    0.434288    0.434692    0.434526
+          3                                       ipc                              Executed IPC    2.034428    2.035222    2.034872
+          3                             sm_efficiency                   Multiprocessor Activity      99.91%      99.94%      99.93%
+    Kernel: void implicit_convolve_sgemm<__half, __half, int=1024, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+          6                        achieved_occupancy                        Achieved Occupancy    0.488963    0.492338    0.490709
+          6                                       ipc                              Executed IPC    2.082880    2.087609    2.085411
+          6                             sm_efficiency                   Multiprocessor Activity      99.08%      99.52%      99.40%

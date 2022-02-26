@@ -1,0 +1,395 @@
+==25158== NVPROF is profiling process 25158, command: python train.py +configs=librispeech
+==25158== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==25158== Profiling application: python train.py +configs=librispeech
+==25158== Profiling result:
+==25158== Metric result:
+Invocations                               Metric Name                        Metric Description         Min         Max         Avg
+Device "Tesla P100-PCIE-16GB (0)"
+    Kernel: void fft2d_r2c_32x32<__half, bool=0, unsigned int=1, bool=0>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.246267    0.246267    0.246267
+          1                                       ipc                              Executed IPC    0.740667    0.740667    0.740667
+          1                             sm_efficiency                   Multiprocessor Activity      63.57%      63.57%      63.57%
+    Kernel: maxwell_gcgemm_32x32_nt
+          2                        achieved_occupancy                        Achieved Occupancy    0.139813    0.146526    0.143169
+          2                                       ipc                              Executed IPC    1.147599    1.550264    1.348931
+          2                             sm_efficiency                   Multiprocessor Activity      80.03%      85.71%      82.87%
+    Kernel: void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long> const *, long const *, long, long const *, long const , long, float, long, long, long, long, long, long, long const , long, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.499373    0.499373    0.499373
+          1                                       ipc                              Executed IPC    1.637247    1.637247    1.637247
+          1                             sm_efficiency                   Multiprocessor Activity       3.44%       3.44%       3.44%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESE_NS0_6memory15LoadWithoutCastENSF_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.914228    0.914228    0.914228
+          1                                       ipc                              Executed IPC    1.061574    1.061574    1.061574
+          1                             sm_efficiency                   Multiprocessor Activity      94.10%      94.10%      94.10%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESE_NS0_6memory12LoadWithCastILi1EEENSF_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.019543    0.019543    0.019543
+          1                                       ipc                              Executed IPC    0.013383    0.013383    0.013383
+          1                             sm_efficiency                   Multiprocessor Activity       1.05%       1.05%       1.05%
+    Kernel: void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<c10::Half, unsigned int, int=2, int=128, int=1>(c10::Half*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<c10::Half, unsigned int, int=2, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+          1                        achieved_occupancy                        Achieved Occupancy    0.724957    0.724957    0.724957
+          1                                       ipc                              Executed IPC    1.495271    1.495271    1.495271
+          1                             sm_efficiency                   Multiprocessor Activity      87.22%      87.22%      87.22%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESE_NS0_6memory12LoadWithCastILi1EEENSF_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.938015    0.938015    0.938015
+          1                                       ipc                              Executed IPC    1.459561    1.459561    1.459561
+          1                             sm_efficiency                   Multiprocessor Activity      98.00%      98.00%      98.00%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028565    0.028565    0.028565
+          1                                       ipc                              Executed IPC    0.022746    0.022746    0.022746
+          1                             sm_efficiency                   Multiprocessor Activity       0.66%       0.66%       0.66%
+    Kernel: _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIlNS0_14func_wrapper_tIlZNS0_11sum_functorIlllEclERNS_14TensorIteratorEEUlllE_EEjlLi4EEEEEvT1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.015625    0.015625    0.015625
+          1                                       ipc                              Executed IPC    0.013439    0.013439    0.013439
+          1                             sm_efficiency                   Multiprocessor Activity       1.28%       1.28%       1.28%
+    Kernel: void implicit_convolve_sgemm<__half, __half, int=128, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+          3                        achieved_occupancy                        Achieved Occupancy    0.031248    0.287996    0.200450
+          3                                       ipc                              Executed IPC    0.721015    1.947267    1.524731
+          3                             sm_efficiency                   Multiprocessor Activity      26.25%      89.81%      68.53%
+    Kernel: void gemmk1_kernel<float, int=256, int=5, bool=0, bool=0, bool=1, bool=0, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half>, float, bool=1, bool=1>(cublasGemmk1Params<float, __half const , cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, __half, biasType<cublasGemvTensorStridedBatched<__half const >::value_type, __half>::type>)
+         25                        achieved_occupancy                        Achieved Occupancy    0.906261    0.912509    0.909963
+         25                                       ipc                              Executed IPC    1.597074    1.660662    1.626663
+         25                             sm_efficiency                   Multiprocessor Activity      94.59%      95.02%      94.81%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_24hardtanh_backward_kernelERNS_14TensorIteratorERKN3c106ScalarES7_ENKUlvE_clEvENKUlvE4_clEvEUlNS4_4HalfESA_E_NS_6detail5ArrayIPcLi3EEE16OffsetCalculatorILi2EjLb0EESG_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSJ_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.935039    0.935039    0.935039
+          1                                       ipc                              Executed IPC    1.015223    1.015223    1.015223
+          1                             sm_efficiency                   Multiprocessor Activity      95.76%      95.76%      95.76%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE6_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.848716    0.848716    0.848716
+          1                                       ipc                              Executed IPC    1.073616    1.073616    1.073616
+          1                             sm_efficiency                   Multiprocessor Activity      92.23%      92.23%      92.23%
+    Kernel: void fft2d_c2r_32x32<__half, bool=0, bool=0, unsigned int=0, bool=0, bool=0>(__half*, float2 const *, int, int, int, int, int, int, int, int, int, float, float, cudnn::reduced_divisor, bool, __half*, __half*, int2, int, int)
+          2                        achieved_occupancy                        Achieved Occupancy    0.245876    0.249538    0.247707
+          2                                       ipc                              Executed IPC    0.651195    1.396663    1.023929
+          2                             sm_efficiency                   Multiprocessor Activity      10.70%      12.30%      11.50%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, float, float, float, float, at::native::AddFunctor<float>, at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.757866    0.757866    0.757866
+          1                                       ipc                              Executed IPC    0.895520    0.895520    0.895520
+          1                             sm_efficiency                   Multiprocessor Activity      86.58%      86.58%      86.58%
+    Kernel: void GENERIC_elementWise_bp2<__half, __half, float, int=4, cudnnRNNBiasMode_t=2>(int, int, __half*, __half*, cudnn::reduced_divisor, __half*)
+         50                        achieved_occupancy                        Achieved Occupancy    0.497448    0.498102    0.497722
+         50                                       ipc                              Executed IPC    0.689027    0.796481    0.743312
+         50                             sm_efficiency                   Multiprocessor Activity      51.17%      53.51%      52.47%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, bool, at::native::CompareEqFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028632    0.028632    0.028632
+          1                                       ipc                              Executed IPC    0.018906    0.018906    0.018906
+          1                             sm_efficiency                   Multiprocessor Activity       0.76%       0.76%       0.76%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, bool, at::native::CompareEqFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.030835    0.030835    0.030835
+          1                                       ipc                              Executed IPC    0.022562    0.022562    0.022562
+          1                             sm_efficiency                   Multiprocessor Activity       0.67%       0.67%       0.67%
+    Kernel: void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::func_wrapper_t<float, at::native::MaxNanFunctor<float>>, unsigned int, float, int=4>>(float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.734858    0.734858    0.734858
+          1                                       ipc                              Executed IPC    1.034868    1.034868    1.034868
+          1                             sm_efficiency                   Multiprocessor Activity      67.76%      67.76%      67.76%
+    Kernel: maxwell_fp16_sgemm_fp16_32x128_nn
+          2                        achieved_occupancy                        Achieved Occupancy    0.490528    0.490564    0.490546
+          2                                       ipc                              Executed IPC    2.278071    2.278970    2.278520
+          2                             sm_efficiency                   Multiprocessor Activity      96.75%      96.78%      96.76%
+    Kernel: hgemm_32x32x32_NT_vec
+          1                        achieved_occupancy                        Achieved Occupancy    0.076851    0.076851    0.076851
+          1                                       ipc                              Executed IPC    0.894466    0.894466    0.894466
+          1                             sm_efficiency                   Multiprocessor Activity      88.54%      88.54%      88.54%
+    Kernel: _ZN2at6native81_GLOBAL__N__57_tmpxft_000107ea_00000000_14_AmpKernels_compute_86_cpp1_ii_3810c27325multi_tensor_apply_kernelINS1_18TensorListMetadataILi1EEENS1_14UnaryOpFunctorIfLi1ELi1ELi0EEEJZZZNS0_47_amp_foreach_non_finite_check_and_unscale_cuda_EN3c108ArrayRefINS_6TensorEEERS9_RKS9_ENKUlvE_clEvENKUlvE2_clEvEUlfE_EEEvT_T0_DpT1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.981836    0.981836    0.981836
+          1                                       ipc                              Executed IPC    0.106471    0.106471    0.106471
+          1                             sm_efficiency                   Multiprocessor Activity      85.88%      85.88%      85.88%
+    Kernel: maxwell_fp16_sgemm_fp16_64x64_nn
+          3                        achieved_occupancy                        Achieved Occupancy    0.191108    0.206745    0.201127
+          3                                       ipc                              Executed IPC    1.453073    2.212485    1.954437
+          3                             sm_efficiency                   Multiprocessor Activity      87.24%      92.28%      90.58%
+    Kernel: maxwell_fp16_sgemm_fp16_32x128_nt
+        100                        achieved_occupancy                        Achieved Occupancy    0.454676    0.490280    0.476213
+        100                                       ipc                              Executed IPC    1.180797    2.309058    2.034103
+        100                             sm_efficiency                   Multiprocessor Activity      90.16%      97.47%      95.14%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=2>>(int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.030825    0.030825    0.030825
+          1                                       ipc                              Executed IPC    0.022889    0.022889    0.022889
+          1                             sm_efficiency                   Multiprocessor Activity       0.68%       0.68%       0.68%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_22reciprocal_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.024983    0.024983    0.024983
+          1                                       ipc                              Executed IPC    0.024705    0.024705    0.024705
+          1                             sm_efficiency                   Multiprocessor Activity       0.93%       0.93%       0.93%
+    Kernel: void at::native::batch_norm_collect_statistics_channels_last_kernel<at::native::Var, float, float, int=4>(float const *, float*, float, float const * volatile *, int*, int, int, float const *)
+          1                        achieved_occupancy                        Achieved Occupancy    0.460580    0.460580    0.460580
+          1                                       ipc                              Executed IPC    1.228702    1.228702    1.228702
+          1                             sm_efficiency                   Multiprocessor Activity      89.80%      89.80%      89.80%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE20_clEvEUlNS6_4HalfEbE_NS_6detail5ArrayIPcLi3EEE16OffsetCalculatorILi2EjLb0EESI_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSL_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.928362    0.928362    0.928362
+          1                                       ipc                              Executed IPC    0.960588    0.960588    0.960588
+          1                             sm_efficiency                   Multiprocessor Activity      94.98%      94.98%      94.98%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, c10::Half, c10::Half, c10::Half, float, at::native::AddFunctor<float>, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.937296    0.937296    0.937296
+          1                                       ipc                              Executed IPC    1.855307    1.855307    1.855307
+          1                             sm_efficiency                   Multiprocessor Activity      97.81%      97.81%      97.81%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, bool, at::native::CompareGTFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028940    0.028940    0.028940
+          1                                       ipc                              Executed IPC    0.023783    0.023783    0.023783
+          1                             sm_efficiency                   Multiprocessor Activity       0.71%       0.71%       0.71%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE4_clEvEUldE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.020809    0.020809    0.020809
+          1                                       ipc                              Executed IPC    0.018594    0.018594    0.018594
+          1                             sm_efficiency                   Multiprocessor Activity       0.92%       0.92%       0.92%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::FillFunctor<bool>, at::detail::Array<char*, int=1>, OffsetCalculator<int=0, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, bool, at::native::FillFunctor<bool>, char*, int=1, at::detail::Array<char*, int=1>, int=0)
+          1                        achieved_occupancy                        Achieved Occupancy    0.187730    0.187730    0.187730
+          1                                       ipc                              Executed IPC    0.324522    0.324522    0.324522
+          1                             sm_efficiency                   Multiprocessor Activity      58.67%      58.67%      58.67%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_84_GLOBAL__N__60_tmpxft_00012309_00000000_14_TensorCompare_compute_86_cpp1_ii_d0af11f724clamp_scalar_kernel_implERNS_18TensorIteratorBaseERKN3c106ScalarES8_ENKUlvE_clEvENKUlvE14_clEvEUlNS5_4HalfEE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.360022    0.360022    0.360022
+          1                                       ipc                              Executed IPC    0.975431    0.975431    0.975431
+          1                             sm_efficiency                   Multiprocessor Activity      89.53%      89.53%      89.53%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<long>, at::detail::Array<char*, int=1>>(int, long, at::native::FillFunctor<long>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.030830    0.030830    0.030830
+          1                                       ipc                              Executed IPC    0.016052    0.016052    0.016052
+          1                             sm_efficiency                   Multiprocessor Activity       0.50%       0.50%       0.50%
+    Kernel: maxwell_fp16_sgemm_fp16_128x32_nn
+        102                        achieved_occupancy                        Achieved Occupancy    0.124968    0.124993    0.124991
+        102                                       ipc                              Executed IPC    1.344134    1.462064    1.438731
+        102                             sm_efficiency                   Multiprocessor Activity      13.87%      54.30%      19.03%
+    Kernel: void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::MaxOps<float>, unsigned int, float, int=4>>(float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.303815    0.303815    0.303815
+          1                                       ipc                              Executed IPC    0.613696    0.613696    0.613696
+          1                             sm_efficiency                   Multiprocessor Activity      69.92%      69.92%      69.92%
+    Kernel: _ZN2at6native13reduce_kernelILi128ELi4ENS0_8ReduceOpIN3c104HalfENS0_14func_wrapper_tIfZNS0_11sum_functorIS4_ffEclERNS_14TensorIteratorEEUlffE_EEjfLi4EEEEEvT1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.566578    0.566578    0.566578
+          1                                       ipc                              Executed IPC    1.188088    1.188088    1.188088
+          1                             sm_efficiency                   Multiprocessor Activity      93.73%      93.73%      93.73%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::AbsFunctor<float>, at::detail::Array<char*, int=2>>(int, float, at::native::AbsFunctor<float>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.031102    0.031102    0.031102
+          1                                       ipc                              Executed IPC    0.028291    0.028291    0.028291
+          1                             sm_efficiency                   Multiprocessor Activity       5.74%       5.74%       5.74%
+    Kernel: void cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>(float, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>, cudnnTensorStruct, __half const *, float, cudnnTensorStruct*, float, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const *, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.554944    0.554944    0.554944
+          1                                       ipc                              Executed IPC    0.805131    0.805131    0.805131
+          1                             sm_efficiency                   Multiprocessor Activity      89.37%      89.37%      89.37%
+    Kernel: _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIfNS0_14func_wrapper_tIfZNS0_11sum_functorIfffEclERNS_14TensorIteratorEEUlffE_EEjfLi4EEEEEvT1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.015625    0.015625    0.015625
+          1                                       ipc                              Executed IPC    0.013895    0.013895    0.013895
+          1                             sm_efficiency                   Multiprocessor Activity       1.28%       1.28%       1.28%
+    Kernel: void fft2d_r2c_32x32<__half, bool=1, unsigned int=0, bool=0>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+          2                        achieved_occupancy                        Achieved Occupancy    0.240990    0.245740    0.243365
+          2                                       ipc                              Executed IPC    0.672466    1.421763    1.047115
+          2                             sm_efficiency                   Multiprocessor Activity      10.73%      12.37%      11.55%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_84_GLOBAL__N__60_tmpxft_000119e1_00000000_14_Normalization_compute_86_cpp1_ii_5c38458722batch_norm_calc_invstdERKNS_6TensorES5_dENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.031130    0.031130    0.031130
+          1                                       ipc                              Executed IPC    0.030716    0.030716    0.030716
+          1                             sm_efficiency                   Multiprocessor Activity       2.60%       2.60%       2.60%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<int>, at::detail::Array<char*, int=1>>(int, int, at::native::FillFunctor<int>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.030471    0.030471    0.030471
+          1                                       ipc                              Executed IPC    0.026786    0.026786    0.026786
+          1                             sm_efficiency                   Multiprocessor Activity       0.42%       0.42%       0.42%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>>(int, c10::Half, c10::Half)
+          1                        achieved_occupancy                        Achieved Occupancy    0.885580    0.885580    0.885580
+          1                                       ipc                              Executed IPC    0.377576    0.377576    0.377576
+          1                             sm_efficiency                   Multiprocessor Activity      93.22%      93.22%      93.22%
+    Kernel: _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIN3c104HalfENS0_14func_wrapper_tIS4_ZNS0_11sum_functorIS4_fS4_EclERNS_14TensorIteratorEEUlffE_EEjS4_Li4EEEEEvT1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.249607    0.249607    0.249607
+          1                                       ipc                              Executed IPC    1.448239    1.448239    1.448239
+          1                             sm_efficiency                   Multiprocessor Activity      51.83%      51.83%      51.83%
+    Kernel: void cudnn::bn_fw_tr_1C11_kernel_NCHW<__half, float, int=512, bool=1, int=1>(cudnnTensorStruct, __half const *, cudnn::bn_fw_tr_1C11_kernel_NCHW<__half, float, int=512, bool=1, int=1>, cudnnTensorStruct*, float const *, float const , cudnnTensorStruct*, cudnnTensorStruct*, cudnnTensorStruct**, float const *, float const *, float const *, cudnnTensorStruct*, cudnnTensorStruct*)
+          1                        achieved_occupancy                        Achieved Occupancy    0.248133    0.248133    0.248133
+          1                                       ipc                              Executed IPC    0.887108    0.887108    0.887108
+          1                             sm_efficiency                   Multiprocessor Activity      54.51%      54.51%      54.51%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, float, float, float, float, at::native::MulFunctor<float>, at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.184447    0.184447    0.184447
+          1                                       ipc                              Executed IPC    0.529787    0.529787    0.529787
+          1                             sm_efficiency                   Multiprocessor Activity      70.91%      70.91%      70.91%
+    Kernel: void elemWiseRNNcell<__half, __half, float, cudnnRNNMode_t=2, cudnnRNNBiasMode_t=2>(int, int, int, int, int, bool, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half*, __half*, __half*, __half*, __half*, cudnnRNNClipMode_t, cudnnNanPropagation_t, float, float)
+          2                        achieved_occupancy                        Achieved Occupancy    0.123108    0.124125    0.123617
+          2                                       ipc                              Executed IPC    0.264933    0.666667    0.465800
+          2                             sm_efficiency                   Multiprocessor Activity       3.35%      18.96%      11.16%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::DivFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.026287    0.026287    0.026287
+          1                                       ipc                              Executed IPC    0.029658    0.029658    0.029658
+          1                             sm_efficiency                   Multiprocessor Activity       0.84%       0.84%       0.84%
+    Kernel: void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_forward<c10::Half, float, float, int=5, bool=1>(float*, c10::Half const *, int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.372513    0.372513    0.372513
+          1                                       ipc                              Executed IPC    1.068714    1.068714    1.068714
+          1                             sm_efficiency                   Multiprocessor Activity      46.06%      46.06%      46.06%
+    Kernel: void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const *, long, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , long const *, long, long const *, long const , long, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , long, long, long, long, long, long, long, long, long, long, long, long, long const , long, long, long, long, bool)
+          1                        achieved_occupancy                        Achieved Occupancy    0.386965    0.386965    0.386965
+          1                                       ipc                              Executed IPC    0.728333    0.728333    0.728333
+          1                             sm_efficiency                   Multiprocessor Activity       1.78%       1.78%       1.78%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=3>, TrivialOffsetCalculator<int=2, unsigned int>, TrivialOffsetCalculator<int=1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, int, int, int, int, at::native::AddFunctor<int>, at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.027182    0.027182    0.027182
+          1                                       ipc                              Executed IPC    0.036079    0.036079    0.036079
+          1                             sm_efficiency                   Multiprocessor Activity       0.50%       0.50%       0.50%
+    Kernel: void RNN_bidirectional_accum_bp1_1<__half, __half, float>(__half*, __half*, __half*, int)
+         25                        achieved_occupancy                        Achieved Occupancy    0.796911    0.823409    0.811267
+         25                                       ipc                              Executed IPC    0.832091    0.931711    0.872391
+         25                             sm_efficiency                   Multiprocessor Activity      88.44%      92.56%      89.72%
+    Kernel: hgemm_32x32x32_TN
+          1                        achieved_occupancy                        Achieved Occupancy    0.062489    0.062489    0.062489
+          1                                       ipc                              Executed IPC    0.919936    0.919936    0.919936
+          1                             sm_efficiency                   Multiprocessor Activity      54.66%      54.66%      54.66%
+    Kernel: void precomputed_convolve_sgemm<__half, int=1024, int=5, int=5, int=4, int=3, int=3, int=1, bool=0>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, int*)
+          1                        achieved_occupancy                        Achieved Occupancy    0.401668    0.401668    0.401668
+          1                                       ipc                              Executed IPC    2.032729    2.032729    2.032729
+          1                             sm_efficiency                   Multiprocessor Activity      95.44%      95.44%      95.44%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028529    0.028529    0.028529
+          1                                       ipc                              Executed IPC    0.026084    0.026084    0.026084
+          1                             sm_efficiency                   Multiprocessor Activity       0.67%       0.67%       0.67%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, long, at::native::AddFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028478    0.028478    0.028478
+          1                                       ipc                              Executed IPC    0.029508    0.029508    0.029508
+          1                             sm_efficiency                   Multiprocessor Activity       0.67%       0.67%       0.67%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<float>, at::detail::Array<char*, int=1>>(int, float, at::native::FillFunctor<float>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.141560    0.141560    0.141560
+          1                                       ipc                              Executed IPC    0.455504    0.455504    0.455504
+          1                             sm_efficiency                   Multiprocessor Activity      63.72%      63.72%      63.72%
+    Kernel: void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=2, int=128, int=1>(float*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=2, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+          1                        achieved_occupancy                        Achieved Occupancy    0.699292    0.699292    0.699292
+          1                                       ipc                              Executed IPC    1.246270    1.246270    1.246270
+          1                             sm_efficiency                   Multiprocessor Activity      86.25%      86.25%      86.25%
+    Kernel: void LSTM_elementWise_bp1<__half, __half, float>(int, int, __half*, __half*, __half*, __half*, __half*, __half*, __half*, __half*, __half*, int, int, cudnnRNNClipMode_t, cudnnNanPropagation_t, float, float)
+         50                        achieved_occupancy                        Achieved Occupancy    0.122945    0.124424    0.123908
+         50                                       ipc                              Executed IPC    0.205022    0.591233    0.433680
+         50                             sm_efficiency                   Multiprocessor Activity       5.31%      12.86%       8.77%
+    Kernel: void at::native::unrolled_elementwise_kernel<at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=2>, TrivialOffsetCalculator<int=1, unsigned int>, TrivialOffsetCalculator<int=1, unsigned int>, at::native::memory::LoadWithCast<int=1>, at::native::memory::StoreWithCast>(int, float, float, float, float, at::native::MulFunctor<float>, at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.021816    0.021816    0.021816
+          1                                       ipc                              Executed IPC    0.020005    0.020005    0.020005
+          1                             sm_efficiency                   Multiprocessor Activity       0.85%       0.85%       0.85%
+    Kernel: void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_forward<c10::Half, float, float, int=5, bool=0>(float*, c10::Half const *, int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.274542    0.274542    0.274542
+          1                                       ipc                              Executed IPC    0.799928    0.799928    0.799928
+          1                             sm_efficiency                   Multiprocessor Activity      44.21%      44.21%      44.21%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE8_clEvEUliE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.022876    0.022876    0.022876
+          1                                       ipc                              Executed IPC    0.015562    0.015562    0.015562
+          1                             sm_efficiency                   Multiprocessor Activity       0.94%       0.94%       0.94%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_16sqrt_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.030779    0.030779    0.030779
+          1                                       ipc                              Executed IPC    0.026059    0.026059    0.026059
+          1                             sm_efficiency                   Multiprocessor Activity       0.82%       0.82%       0.82%
+    Kernel: void gemv2N_kernel<int, int, __half, __half, __half, float, int=128, int=4, int=4, int=4, int=1, bool=0, cublasGemvParams<cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half>, float>>(__half const )
+         52                        achieved_occupancy                        Achieved Occupancy    0.062482    0.143467    0.065603
+         52                                       ipc                              Executed IPC    0.387039    0.657773    0.443941
+         52                             sm_efficiency                   Multiprocessor Activity      51.45%      78.68%      53.33%
+    Kernel: void cudnn::cnn::wgrad_alg1_engine<__half, float, int=128, int=5, int=5, int=3, int=3, int=3, bool=0, bool=1>(int, int, int, __half const *, int, float*, __half const , kernel_grad_params, __int64, int, float, float, int, int, int*, kernel_grad_params, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.429326    0.429326    0.429326
+          1                                       ipc                              Executed IPC    2.086394    2.086394    2.086394
+          1                             sm_efficiency                   Multiprocessor Activity      98.35%      98.35%      98.35%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_24hardtanh_backward_kernelERNS_14TensorIteratorERKN3c106ScalarES7_ENKUlvE_clEvENKUlvE4_clEvEUlNS4_4HalfESA_E_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.902506    0.902506    0.902506
+          1                                       ipc                              Executed IPC    0.519007    0.519007    0.519007
+          1                             sm_efficiency                   Multiprocessor Activity      95.47%      95.47%      95.47%
+    Kernel: void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_log_beta_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_log_beta_gpu_kernel<float, long> const *, long const *, long, long const *, long const , long, long, long, long, long, long, long, long const , long, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.499834    0.499834    0.499834
+          1                                       ipc                              Executed IPC    1.701175    1.701175    1.701175
+          1                             sm_efficiency                   Multiprocessor Activity       3.37%       3.37%       3.37%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=2, at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=3>>(int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.028303    0.028303    0.028303
+          1                                       ipc                              Executed IPC    0.029474    0.029474    0.029474
+          1                             sm_efficiency                   Multiprocessor Activity       0.65%       0.65%       0.65%
+    Kernel: void at::native::batch_norm_backward_reduce_channels_last_kernel<int=4, float, float, float>(float const *, float const , float const *, float const , float const **, float const *, float*, float, float const * volatile *, int*, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.914838    0.914838    0.914838
+          1                                       ipc                              Executed IPC    0.818219    0.818219    0.818219
+          1                             sm_efficiency                   Multiprocessor Activity      85.16%      85.16%      85.16%
+    Kernel: void precomputed_convolve_sgemm<__half, int=512, int=6, int=8, int=3, int=3, int=5, int=1, bool=0>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, int*)
+          1                        achieved_occupancy                        Achieved Occupancy    0.244654    0.244654    0.244654
+          1                                       ipc                              Executed IPC    2.063898    2.063898    2.063898
+          1                             sm_efficiency                   Multiprocessor Activity      97.60%      97.60%      97.60%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.027881    0.027881    0.027881
+          1                                       ipc                              Executed IPC    0.034747    0.034747    0.034747
+          1                             sm_efficiency                   Multiprocessor Activity       0.57%       0.57%       0.57%
+    Kernel: void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_zero_padded_gradients<float>(float*, long const *, long, long, long, long, long, long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.192884    0.192884    0.192884
+          1                                       ipc                              Executed IPC    0.232184    0.232184    0.232184
+          1                             sm_efficiency                   Multiprocessor Activity       2.75%       2.75%       2.75%
+    Kernel: void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=1, int=128, int=1>(float*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=1, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+          1                        achieved_occupancy                        Achieved Occupancy    0.467826    0.467826    0.467826
+          1                                       ipc                              Executed IPC    1.344919    1.344919    1.344919
+          1                             sm_efficiency                   Multiprocessor Activity      75.66%      75.66%      75.66%
+    Kernel: void at::native::batch_norm_backward_elemt_channels_last_kernel<int=4, float, float, float>(float const *, float const , float const *, float const , float const *, float const , float const , at::native::batch_norm_backward_elemt_channels_last_kernel<int=4, float, float, float>*, float const *, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.870892    0.870892    0.870892
+          1                                       ipc                              Executed IPC    0.540110    0.540110    0.540110
+          1                             sm_efficiency                   Multiprocessor Activity      89.66%      89.66%      89.66%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_22reciprocal_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE0_clEvEUldE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.029469    0.029469    0.029469
+          1                                       ipc                              Executed IPC    0.024856    0.024856    0.024856
+          1                             sm_efficiency                   Multiprocessor Activity       0.86%       0.86%       0.86%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<c10::Half>, at::detail::Array<char*, int=1>>(int, c10::Half, at::native::FillFunctor<c10::Half>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.031142    0.031142    0.031142
+          1                                       ipc                              Executed IPC    0.024831    0.024831    0.024831
+          1                             sm_efficiency                   Multiprocessor Activity      14.51%      14.51%      14.51%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_15exp_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.160481    0.160481    0.160481
+          1                                       ipc                              Executed IPC    0.206854    0.206854    0.206854
+          1                             sm_efficiency                   Multiprocessor Activity      35.09%      35.09%      35.09%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE20_clEvEUlNS6_4HalfEbE_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.806091    0.806091    0.806091
+          1                                       ipc                              Executed IPC    0.481825    0.481825    0.481825
+          1                             sm_efficiency                   Multiprocessor Activity      92.36%      92.36%      92.36%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE6_clEvEUlfbE_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.031133    0.031133    0.031133
+          1                                       ipc                              Executed IPC    0.031815    0.031815    0.031815
+          1                             sm_efficiency                   Multiprocessor Activity       6.52%       6.52%       6.52%
+    Kernel: void cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>(float, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnnTensorStruct, __half const *, float, __half const , float, cudnnTensorStruct*, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const *, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>*, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const *, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const , cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const , cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>)
+          1                        achieved_occupancy                        Achieved Occupancy    0.247978    0.247978    0.247978
+          1                                       ipc                              Executed IPC    0.803245    0.803245    0.803245
+          1                             sm_efficiency                   Multiprocessor Activity      54.61%      54.61%      54.61%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_84_GLOBAL__N__60_tmpxft_00012309_00000000_14_TensorCompare_compute_86_cpp1_ii_d0af11f717where_kernel_implERNS_14TensorIteratorEN3c1010ScalarTypeEENKUlvE_clEvENKUlvE6_clEvEUlbffE_NS_6detail5ArrayIPcLi4EEE16OffsetCalculatorILi3EjLb0EESE_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSH_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.022693    0.022693    0.022693
+          1                                       ipc                              Executed IPC    0.037057    0.037057    0.037057
+          1                             sm_efficiency                   Multiprocessor Activity       0.83%       0.83%       0.83%
+    Kernel: void cudnn::cnn::kern_precompute_indices<bool=0>(int*, int, int, int, int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.119528    0.119528    0.119528
+          1                                       ipc                              Executed IPC    0.383518    0.383518    0.383518
+          1                             sm_efficiency                   Multiprocessor Activity       0.78%       0.78%       0.78%
+    Kernel: void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_backward<float, c10::Half, float, int=5, bool=1>(c10::Half*, float const *, float const , int, int, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.353061    0.353061    0.353061
+          1                                       ipc                              Executed IPC    0.917568    0.917568    0.917568
+          1                             sm_efficiency                   Multiprocessor Activity      40.44%      40.44%      40.44%
+    Kernel: void at::native::batch_norm_transform_input_channels_last_kernel<float, float, float, int=4>(float const *, float const , float const *, float const , float const *, float const , at::native::batch_norm_transform_input_channels_last_kernel<float, float, float, int=4>*, int, int, bool)
+          1                        achieved_occupancy                        Achieved Occupancy    0.845576    0.845576    0.845576
+          1                                       ipc                              Executed IPC    0.714452    0.714452    0.714452
+          1                             sm_efficiency                   Multiprocessor Activity      82.17%      82.17%      82.17%
+    Kernel: void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::NormTwoOps<float, float>, unsigned int, float, int=4>>(float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.015625    0.015625    0.015625
+          1                                       ipc                              Executed IPC    0.012888    0.012888    0.012888
+          1                             sm_efficiency                   Multiprocessor Activity       1.35%       1.35%       1.35%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.027914    0.027914    0.027914
+          1                                       ipc                              Executed IPC    0.030579    0.030579    0.030579
+          1                             sm_efficiency                   Multiprocessor Activity       0.54%       0.54%       0.54%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZNS0_86_GLOBAL__N__56_tmpxft_00011ac0_00000000_14_PowKernel_compute_86_cpp1_ii_0aea0a57_7240729pow_tensor_scalar_kernel_implIffEEvRNS_18TensorIteratorBaseET0_EUlfE_NS_6detail5ArrayIPcLi2EEEEEviS6_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.028144    0.028144    0.028144
+          1                                       ipc                              Executed IPC    0.024572    0.024572    0.024572
+          1                             sm_efficiency                   Multiprocessor Activity       0.64%       0.64%       0.64%
+    Kernel: void cudnn::ops::convertTensor_kernel<float, __half, float, cudnnKernelDataType_t=0>(float, float const *, cudnn::ops::convertTensor_kernel<float, __half, float, cudnnKernelDataType_t=0>, __half*, unsigned long)
+          1                        achieved_occupancy                        Achieved Occupancy    0.472919    0.472919    0.472919
+          1                                       ipc                              Executed IPC    1.200329    1.200329    1.200329
+          1                             sm_efficiency                   Multiprocessor Activity      73.49%      73.49%      73.49%
+    Kernel: _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_15log_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+          1                        achieved_occupancy                        Achieved Occupancy    0.031162    0.031162    0.031162
+          1                                       ipc                              Executed IPC    0.082067    0.082067    0.082067
+          1                             sm_efficiency                   Multiprocessor Activity       6.77%       6.77%       6.77%
+    Kernel: void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, bool, at::native::CompareLTFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.027038    0.027038    0.027038
+          1                                       ipc                              Executed IPC    0.027397    0.027397    0.027397
+          1                             sm_efficiency                   Multiprocessor Activity       0.59%       0.59%       0.59%
+    Kernel: void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::MeanOps<float, float>, unsigned int, float, int=4>>(float)
+          1                        achieved_occupancy                        Achieved Occupancy    0.015625    0.015625    0.015625
+          1                                       ipc                              Executed IPC    0.011759    0.011759    0.011759
+          1                             sm_efficiency                   Multiprocessor Activity       1.30%       1.30%       1.30%
+    Kernel: void internal::region_transform_ABC_val<int, int=32, int=32, bool=0, internal::TransformParamsABC<float, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half, int>, internal::Tile_Col<int, int=32>>>>(float, internal::region_transform_ABC_val<int, int=32, int=32, bool=0, internal::TransformParamsABC<float, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>::Math, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half, int>, internal::Tile_Col<int, int=32>>>>, float)
+          4                        achieved_occupancy                        Achieved Occupancy    0.210009    0.217679    0.213910
+          4                                       ipc                              Executed IPC    1.000622    1.160483    1.076344
+          4                             sm_efficiency                   Multiprocessor Activity      90.88%      93.37%      92.28%
+    Kernel: void implicit_convolve_sgemm<__half, __half, int=1024, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+          2                        achieved_occupancy                        Achieved Occupancy    0.031249    0.031250    0.031249
+          2                                       ipc                              Executed IPC    0.501453    0.725340    0.613396
+          2                             sm_efficiency                   Multiprocessor Activity      34.56%      39.01%      36.79%
+    Kernel: _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE6_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESC_NS0_6memory15LoadWithoutCastENSD_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+          1                        achieved_occupancy                        Achieved Occupancy    0.746649    0.746649    0.746649
+          1                                       ipc                              Executed IPC    1.450744    1.450744    1.450744
+          1                             sm_efficiency                   Multiprocessor Activity      87.02%      87.02%      87.02%
+    Kernel: at::native::amp_update_scale_cuda_kernel(float*, int*, float*, double, double, int)
+          1                        achieved_occupancy                        Achieved Occupancy    0.015625    0.015625    0.015625
+          1                                       ipc                              Executed IPC    0.008359    0.008359    0.008359
+          1                             sm_efficiency                   Multiprocessor Activity       0.63%       0.63%       0.63%
+    Kernel: _ZN2at6native84_GLOBAL__N__60_tmpxft_000119e1_00000000_14_Normalization_compute_86_cpp1_ii_5c38458745unrolled_elementwise_kernel_for_multi_outputsILi3EZZZNS1_34batch_norm_update_stats_and_invertERKNS_6TensorES5_S5_S5_ddlENKUlvE_clEvENKUlvE2_clEvEUlffffE_NS_6detail5ArrayIPcLi7EEE23TrivialOffsetCalculatorILi4EjESD_ILi3EjEEEviT0_T1_T2_T3_
+          1                        achieved_occupancy                        Achieved Occupancy    0.031239    0.031239    0.031239
+          1                                       ipc                              Executed IPC    0.084354    0.084354    0.084354
+          1                             sm_efficiency                   Multiprocessor Activity       3.53%       3.53%       3.53%

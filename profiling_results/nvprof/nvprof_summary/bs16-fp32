@@ -1,0 +1,216 @@
+==6624== NVPROF is profiling process 6624, command: python train.py +configs=librispeech
+==6624== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==6624== Profiling application: python train.py +configs=librispeech
+==6624== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   84.80%  44.6085s    174170  256.12us  100.10us  562.17us  maxwell_fp16_sgemm_fp16_128x32_nn
+                    4.46%  2.34462s      1690  1.3874ms  69.791us  16.249ms  maxwell_fp16_sgemm_fp16_32x128_nt
+                    2.37%  1.24673s       130  9.5903ms  209.53us  15.688ms  maxwell_fp16_sgemm_fp16_32x128_nn
+                    1.13%  596.96ms        10  59.696ms  58.394ms  60.467ms  void wgrad_alg0_engine<__half, int=512, int=6, int=5, int=3, int=3, int=3, bool=0, int=512>(int, int, int, __half const *, int, __half*, __half const *, kernel_grad_params, __int64, int, float, int, int, int, int)
+                    1.05%  552.76ms     92430  5.9800us  3.7750us  15.679us  void elemWiseRNNcell<__half, __half, float, cudnnRNNMode_t=2, cudnnRNNBiasMode_t=2>(int, int, int, int, int, bool, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half const *, __half*, __half*, __half*, __half*, __half*, cudnnRNNClipMode_t, cudnnNanPropagation_t, float, float)
+                    0.91%  478.04ms    123894  3.8580us     959ns  11.135ms  [CUDA memcpy DtoH]
+                    0.74%  390.30ms     74400  5.2450us  3.2000us  15.104us  void LSTM_elementWise_bp1<__half, __half, float>(int, int, __half*, __half*, __half*, __half*, __half*, __half*, __half*, __half*, __half*, int, int, cudnnRNNClipMode_t, cudnnNanPropagation_t, float, float)
+                    0.64%  336.43ms     44813  7.5070us  2.3360us  390.52us  [CUDA memcpy DtoD]
+                    0.55%  287.45ms       338  850.43us     831ns  6.2169ms  [CUDA memcpy HtoD]
+                    0.42%  219.83ms      5369  40.943us  30.271us  55.679us  maxwell_gcgemm_32x32_nt
+                    0.29%  151.69ms       765  198.29us  82.143us  1.2686ms  void gemmk1_kernel<float, int=256, int=5, bool=0, bool=0, bool=1, bool=0, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half>, float, bool=1, bool=1>(cublasGemmk1Params<float, __half const , cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, __half, biasType<cublasGemvTensorStridedBatched<__half const >::value_type, __half>::type>)
+                    0.28%  149.53ms       725  206.25us  174.59us  237.82us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>>(int, c10::Half, c10::Half)
+                    0.24%  128.49ms      1804  71.226us  2.5270us  266.33us  void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<c10::Half>, at::detail::Array<char*, int=1>>(int, c10::Half, at::native::FillFunctor<c10::Half>)
+                    0.21%  111.78ms        10  11.178ms  10.816ms  11.395ms  void cudnn::cnn::wgrad_alg1_engine<__half, float, int=128, int=5, int=5, int=3, int=3, int=3, bool=0, bool=1>(int, int, int, __half const *, int, float*, __half const , kernel_grad_params, __int64, int, float, float, int, int, int*, kernel_grad_params, int, int)
+                    0.15%  80.728ms      1990  40.566us  25.728us  102.65us  void gemv2N_kernel<int, int, __half, __half, __half, float, int=128, int=4, int=4, int=4, int=1, bool=0, cublasGemvParams<cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half const >, cublasGemvTensorStridedBatched<__half>, float>>(__half const )
+                    0.15%  79.349ms      2416  32.843us  4.2230us  1.1555ms  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESE_NS0_6memory15LoadWithoutCastENSF_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.11%  58.377ms      2975  19.622us  15.103us  42.208us  void fft2d_r2c_32x32<__half, bool=0, unsigned int=0, bool=0>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+                    0.11%  57.816ms        12  4.8180ms  4.0167ms  7.4151ms  void precomputed_convolve_sgemm<__half, int=1024, int=5, int=5, int=4, int=3, int=3, int=1, bool=0>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, int*)
+                    0.10%  53.991ms       100  539.91us  304.35us  775.03us  void GENERIC_elementWise_bp2<__half, __half, float, int=4, cudnnRNNBiasMode_t=2>(int, int, __half*, __half*, cudnn::reduced_divisor, __half*)
+                    0.10%  52.483ms        50  1.0497ms  1.0214ms  1.0610ms  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESE_NS0_6memory12LoadWithCastILi1EEENSF_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.10%  51.371ms      2975  17.267us  11.776us  30.079us  void fft2d_c2r_32x32<__half, bool=1, bool=0, unsigned int=0, bool=0, bool=0>(__half*, float2 const *, int, int, int, int, int, int, int, int, int, float, float, cudnn::reduced_divisor, bool, __half*, __half*, int2, int, int)
+                    0.08%  44.216ms      2394  18.469us  13.760us  39.103us  void fft2d_r2c_32x32<__half, bool=1, unsigned int=0, bool=0>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+                    0.08%  43.474ms      2394  18.159us  12.672us  29.503us  void fft2d_c2r_32x32<__half, bool=0, bool=0, unsigned int=0, bool=0, bool=0>(__half*, float2 const *, int, int, int, int, int, int, int, int, int, float, float, cudnn::reduced_divisor, bool, __half*, __half*, int2, int, int)
+                    0.06%  31.188ms        24  1.2995ms  1.1068ms  1.9539ms  void implicit_convolve_sgemm<__half, __half, int=1024, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+                    0.06%  30.181ms       708  42.628us  3.0400us  321.66us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE18_clEvEUlN3c104HalfEE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESE_NS0_6memory12LoadWithCastILi1EEENSF_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.06%  29.320ms        20  1.4660ms  950.42us  1.9681ms  void cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>(float, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>, cudnnTensorStruct, __half const *, float, __half const , float, cudnnTensorStruct*, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const *, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>*, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const *, cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const , cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1> const , cudnn::bn_bw_1C11_kernel_new<__half, float, float2, int=512, bool=1, int=1>)
+                    0.05%  26.113ms       112  233.15us  115.49us  467.19us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE20_clEvEUlNS6_4HalfEbE_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+                    0.05%  25.707ms       510  50.405us  2.8160us  217.82us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE6_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.04%  21.252ms        60  354.19us  268.38us  557.66us  _ZN2at6native13reduce_kernelILi128ELi4ENS0_8ReduceOpIN3c104HalfENS0_14func_wrapper_tIfZNS0_11sum_functorIS4_ffEclERNS_14TensorIteratorEEUlffE_EEjfLi4EEEEEvT1_
+                    0.04%  20.954ms       240  87.308us  46.079us  205.41us  void internal::region_transform_ABC_val<int, int=32, int=32, bool=0, internal::TransformParamsABC<float, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half, int>, internal::Tile_Col<int, int=32>>>>(float, internal::region_transform_ABC_val<int, int=32, int=32, bool=0, internal::TransformParamsABC<float, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>::Math, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half const , int>, internal::Tile_Col<int, int=32>>, internal::TiledMatrixStridedBatch<internal::RawData<__half, int>, internal::Tile_Col<int, int=32>>>>, float)
+                    0.04%  19.663ms        50  393.27us  99.006us  1.0687ms  _ZN2at6native81_GLOBAL__N__57_tmpxft_000107ea_00000000_14_AmpKernels_compute_86_cpp1_ii_3810c27325multi_tensor_apply_kernelINS1_18TensorListMetadataILi1EEENS1_14UnaryOpFunctorIfLi1ELi1ELi0EEEJZZZNS0_47_amp_foreach_non_finite_check_and_unscale_cuda_EN3c108ArrayRefINS_6TensorEEERS9_RKS9_ENKUlvE_clEvENKUlvE2_clEvEUlfE_EEEvT_T0_DpT1_
+                    0.04%  19.117ms        10  1.9117ms  1.4365ms  2.1646ms  void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_log_beta_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_log_beta_gpu_kernel<float, long> const *, long const *, long, long const *, long const , long, long, long, long, long, long, long, long const , long, long, long)
+                    0.04%  18.704ms        24  779.35us  434.39us  1.6090ms  void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, c10::Half, c10::Half, c10::Half, float, at::native::AddFunctor<float>, at::native::BinaryFunctor<c10::Half, c10::Half, c10::Half, at::native::AddFunctor<float>>)
+                    0.04%  18.573ms       545  34.078us  2.5600us  120.57us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+                    0.03%  14.702ms       636  23.117us  2.3680us  84.062us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+                    0.03%  14.570ms        50  291.40us  279.80us  302.75us  void at::native::batch_norm_backward_elemt_channels_last_kernel<int=4, float, float, float>(float const *, float const , float const *, float const , float const *, float const , float const , at::native::batch_norm_backward_elemt_channels_last_kernel<int=4, float, float, float>*, float const *, int, int)
+                    0.03%  14.515ms        20  725.74us  707.67us  736.95us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE20_clEvEUlNS6_4HalfEbE_NS_6detail5ArrayIPcLi3EEE16OffsetCalculatorILi2EjLb0EESI_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSL_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.03%  13.754ms       482  28.534us  3.1680us  94.847us  void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, float, float, float, float, at::native::MulFunctor<float>, at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>)
+                    0.02%  12.686ms       747  16.982us  2.1750us  635.48us  void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<float>, at::detail::Array<char*, int=1>>(int, float, at::native::FillFunctor<float>)
+                    0.02%  12.354ms        60  205.91us  155.07us  323.20us  void at::native::batch_norm_transform_input_channels_last_kernel<float, float, float, int=4>(float const *, float const , float const *, float const , float const *, float const , at::native::batch_norm_transform_input_channels_last_kernel<float, float, float, int=4>*, int, int, bool)
+                    0.02%  11.707ms        20  585.34us  374.14us  819.89us  void cudnn::bn_fw_tr_1C11_kernel_NCHW<__half, float, int=512, bool=1, int=1>(cudnnTensorStruct, __half const *, cudnn::bn_fw_tr_1C11_kernel_NCHW<__half, float, int=512, bool=1, int=1>, cudnnTensorStruct*, float const *, float const , cudnnTensorStruct*, cudnnTensorStruct*, cudnnTensorStruct**, float const *, float const *, float const *, cudnnTensorStruct*, cudnnTensorStruct*)
+                    0.02%  10.937ms       600  18.227us  4.0000us  52.799us  void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::NormTwoOps<float, float>, unsigned int, float, int=4>>(float)
+                    0.02%  10.497ms        10  1.0497ms  859.35us  1.1715ms  void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long> const *, long const *, long, long const *, long const , long, float, long, long, long, long, long, long, long const , long, long, long)
+                    0.02%  10.166ms       668  15.218us  4.1920us  111.68us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE6_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE16OffsetCalculatorILi1EjLb0EESC_NS0_6memory15LoadWithoutCastENSD_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.02%  10.043ms        50  200.86us  194.59us  218.78us  void at::native::batch_norm_collect_statistics_channels_last_kernel<at::native::Var, float, float, int=4>(float const *, float*, float, float const * volatile *, int*, int, int, float const *)
+                    0.02%  9.7467ms        50  194.93us  186.27us  199.36us  void at::native::batch_norm_backward_reduce_channels_last_kernel<int=4, float, float, float>(float const *, float const , float const *, float const , float const **, float const *, float*, float, float const * volatile *, int*, int, int)
+                    0.02%  9.5536ms      1074  8.8950us  3.2960us  37.375us  void at::native::unrolled_elementwise_kernel<at::native::FillFunctor<bool>, at::detail::Array<char*, int=1>, OffsetCalculator<int=0, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, bool, at::native::FillFunctor<bool>, char*, int=1, at::detail::Array<char*, int=1>, int=0)
+                    0.01%  7.7717ms        10  777.17us  762.68us  787.16us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_24hardtanh_backward_kernelERNS_14TensorIteratorERKN3c106ScalarES7_ENKUlvE_clEvENKUlvE4_clEvEUlNS4_4HalfESA_E_NS_6detail5ArrayIPcLi3EEE16OffsetCalculatorILi2EjLb0EESG_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSJ_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.01%  7.2134ms        50  144.27us  118.08us  199.58us  void RNN_bidirectional_accum_bp1_1<__half, __half, float>(__half*, __half*, __half*, int)
+                    0.01%  6.8366ms        48  142.43us  82.654us  174.69us  void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=2, int=128, int=1>(float*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=2, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+                    0.01%  5.5196ms        10  551.96us  430.59us  625.08us  void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const *, long, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , long const *, long, long const *, long const , long, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_backward_collect_nonblank_gpu_kernel<float, long> const , long, long, long, long, long, long, long, long, long, long, long, long, long const , long, long, long, long, bool)
+                    0.01%  5.1540ms        24  214.75us  181.12us  254.65us  void implicit_convolve_sgemm<__half, __half, int=128, int=5, int=5, int=3, int=3, int=3, int=1, bool=0, bool=0, bool=1>(int, int, int, __half const *, int, __half*, __half const *, kernel_conv_params, __int64, int, float, float, int, __half const *, __half const *, bool, int, int)
+                    0.01%  4.6616ms        20  233.08us  144.86us  348.54us  _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIN3c104HalfENS0_14func_wrapper_tIS4_ZNS0_11sum_functorIS4_fS4_EclERNS_14TensorIteratorEEUlffE_EEjS4_Li4EEEEEvT1_
+                    0.01%  4.3448ms        24  181.03us  95.711us  376.99us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_84_GLOBAL__N__60_tmpxft_00012309_00000000_14_TensorCompare_compute_86_cpp1_ii_d0af11f724clamp_scalar_kernel_implERNS_18TensorIteratorBaseERKN3c106ScalarES8_ENKUlvE_clEvENKUlvE14_clEvEUlNS5_4HalfEE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.01%  3.9625ms        10  396.25us  388.03us  399.29us  hgemm_32x32x32_TN
+                    0.01%  3.3645ms        10  336.45us  326.84us  340.54us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_24hardtanh_backward_kernelERNS_14TensorIteratorERKN3c106ScalarES7_ENKUlvE_clEvENKUlvE4_clEvEUlNS4_4HalfESA_E_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+                    0.00%  2.0683ms        50  41.366us  4.5120us  134.62us  void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=3>, OffsetCalculator<int=2, unsigned int, bool=0>, OffsetCalculator<int=1, unsigned int, bool=0>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, float, float, float, float, at::native::AddFunctor<float>, at::native::BinaryFunctor<float, float, float, at::native::AddFunctor<float>>)
+                    0.00%  1.7543ms        12  146.20us  114.40us  208.09us  hgemm_32x32x32_NT_vec
+                    0.00%  1.6616ms        12  138.47us  94.111us  164.35us  void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<c10::Half, unsigned int, int=2, int=128, int=1>(c10::Half*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<c10::Half, unsigned int, int=2, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+                    0.00%  1.5139ms         4  378.47us  156.13us  704.73us  void cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>(float, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>, cudnnTensorStruct, __half const *, float, cudnnTensorStruct*, float, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const *, cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1> const , cudnn::bn_fw_inf_1C11_kernel_NCHW<__half, float, bool=1, int=1>)
+                    0.00%  894.94us       330  2.7110us  2.3670us  5.1200us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, long, at::native::AddFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+                    0.00%  578.26us        30  19.275us  2.6240us  53.183us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_15exp_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.00%  565.84us        30  18.861us  4.0960us  47.647us  _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIfNS0_14func_wrapper_tIfZNS0_11sum_functorIfffEclERNS_14TensorIteratorEEUlffE_EEjfLi4EEEEEvT1_
+                    0.00%  487.19us        12  40.599us  39.040us  41.952us  void fft2d_r2c_32x32<__half, bool=0, unsigned int=1, bool=1>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+                    0.00%  450.97us        10  45.097us  42.720us  48.863us  void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::func_wrapper_t<float, at::native::MaxNanFunctor<float>>, unsigned int, float, int=4>>(float)
+                    0.00%  412.12us        10  41.212us  39.872us  42.815us  void fft2d_r2c_32x32<__half, bool=0, unsigned int=1, bool=0>(float2*, __half const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+                    0.00%  378.40us        10  37.839us  37.664us  38.176us  void at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=1, int=128, int=1>(float*, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrayBatchedCopy<float, unsigned int, int=1, int=128, int=1>, unsigned int, int=128, int=1>, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::TensorSizeStride<at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata, unsigned int=4>, int, at::native::_GLOBAL__N__52_tmpxft_000120a5_00000000_14_Shape_compute_86_cpp1_ii_cedd8df2::CatArrInputTensorMetadata)
+                    0.00%  337.00us       323  1.0430us     800ns  5.8870us  [CUDA memset]
+                    0.00%  322.11us       101  3.1890us  2.2720us  4.0640us  void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<int>, at::detail::Array<char*, int=1>>(int, int, at::native::FillFunctor<int>)
+                    0.00%  306.30us       128  2.3920us  2.3670us  2.9440us  void at::native::unrolled_elementwise_kernel<at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=3>, TrivialOffsetCalculator<int=2, unsigned int>, TrivialOffsetCalculator<int=1, unsigned int>, at::native::memory::LoadWithoutCast, at::native::memory::StoreWithoutCast>(int, int, int, int, int, at::native::AddFunctor<int>, at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>)
+                    0.00%  279.30us        10  27.929us  16.928us  31.360us  void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_zero_padded_gradients<float>(float*, long const *, long, long, long, long, long, long)
+                    0.00%  275.13us        10  27.513us  19.552us  36.352us  void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::MaxOps<float>, unsigned int, float, int=4>>(float)
+                    0.00%  237.82us        30  7.9270us  3.2000us  15.679us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_84_GLOBAL__N__60_tmpxft_00012309_00000000_14_TensorCompare_compute_86_cpp1_ii_d0af11f717where_kernel_implERNS_14TensorIteratorEN3c1010ScalarTypeEENKUlvE_clEvENKUlvE6_clEvEUlbffE_NS_6detail5ArrayIPcLi4EEE16OffsetCalculatorILi3EjLb0EESE_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSH_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.00%  235.87us        10  23.586us  23.487us  23.807us  void cudnn::ops::convertTensor_kernel<float, __half, float, cudnnKernelDataType_t=0>(float, float const *, cudnn::ops::convertTensor_kernel<float, __half, float, cudnnKernelDataType_t=0>, __half*, unsigned long)
+                    0.00%  213.11us        50  4.2620us  3.7760us  5.5670us  _ZN2at6native84_GLOBAL__N__60_tmpxft_000119e1_00000000_14_Normalization_compute_86_cpp1_ii_5c38458745unrolled_elementwise_kernel_for_multi_outputsILi3EZZZNS1_34batch_norm_update_stats_and_invertERKNS_6TensorES5_S5_S5_ddlENKUlvE_clEvENKUlvE2_clEvEUlffffE_NS_6detail5ArrayIPcLi7EEE23TrivialOffsetCalculatorILi4EjESD_ILi3EjEEEviT0_T1_T2_T3_
+                    0.00%  157.70us        64  2.4640us  2.4000us  3.4880us  void at::native::vectorized_elementwise_kernel<int=2, at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=3>>(int, int, int)
+                    0.00%  120.06us        10  12.006us  11.520us  12.383us  void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_forward<c10::Half, float, float, int=5, bool=1>(float*, c10::Half const *, int, int, int)
+                    0.00%  119.46us        48  2.4880us  2.4000us  3.5840us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=3>>(int, int, int)
+                    0.00%  98.527us        10  9.8520us  9.4080us  10.528us  void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_backward<float, c10::Half, float, int=5, bool=1>(c10::Half*, float const *, float const , int, int, int)
+                    0.00%  93.376us        30  3.1120us  2.4950us  3.9040us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, bool, at::native::CompareEqFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+                    0.00%  61.950us        10  6.1950us  5.7920us  6.3680us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_15log_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.00%  61.314us        12  5.1090us  4.4160us  6.5280us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE8_clEvEUliE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.00%  59.233us        12  4.9360us  2.7840us  5.3120us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::DivFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+                    0.00%  59.231us        20  2.9610us  2.5280us  3.4560us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BinaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=3>>(int, float, float)
+                    0.00%  51.008us        12  4.2500us  3.8720us  4.8640us  void cudnn::cnn::kern_precompute_indices<bool=0>(int*, int, int, int, int, int, int)
+                    0.00%  50.496us        10  5.0490us  4.7360us  5.3440us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_21copy_device_to_deviceERNS_14TensorIteratorEbENKUlvE1_clEvENKUlvE4_clEvEUldE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.00%  48.800us        10  4.8800us  4.6720us  5.1520us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_22reciprocal_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE0_clEvEUldE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.00%  47.135us        10  4.7130us  4.5760us  4.9280us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_16sqrt_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.00%  42.910us         8  5.3630us  3.6800us  9.7910us  _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIlNS0_14func_wrapper_tIlZNS0_11sum_functorIlllEclERNS_14TensorIteratorEEUlllE_EEjlLi4EEEEEvT1_
+                    0.00%  41.025us        16  2.5640us  2.3680us  3.3930us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<int, int, int, at::native::AddFunctor<int>>, at::detail::Array<char*, int=2>>(int, int, int)
+                    0.00%  38.686us        10  3.8680us  3.5200us  4.2240us  void at::native::vectorized_elementwise_kernel<int=4, at::native::AbsFunctor<float>, at::detail::Array<char*, int=2>>(int, float, at::native::AbsFunctor<float>)
+                    0.00%  35.771us        10  3.5770us  3.1990us  3.8400us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_79_GLOBAL__N__55_tmpxft_000115da_00000000_14_Indexing_compute_86_cpp1_ii_ccf5656718masked_fill_kernelIbEEvRNS_14TensorIteratorERKN3c106ScalarEENKUlvE_clEvENKUlvE6_clEvEUlfbE_NS_6detail5ArrayIPcLi3EEEEEviT0_T1_
+                    0.00%  34.466us        10  3.4460us  3.1040us  3.7120us  at::native::amp_update_scale_cuda_kernel(float*, int*, float*, double, double, int)
+                    0.00%  33.696us        10  3.3690us  3.1990us  3.6170us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, bool, at::native::CompareLTFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+                    0.00%  33.151us        10  3.3150us  3.0400us  3.6480us  _ZN2at6native29vectorized_elementwise_kernelILi4EZZZNS0_84_GLOBAL__N__60_tmpxft_000119e1_00000000_14_Normalization_compute_86_cpp1_ii_5c38458722batch_norm_calc_invstdERKNS_6TensorES5_dENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEEEEviT0_T1_
+                    0.00%  32.896us        10  3.2890us  3.1360us  3.4230us  _ZN2at6native29vectorized_elementwise_kernelILi4EZNS0_86_GLOBAL__N__56_tmpxft_00011ac0_00000000_14_PowKernel_compute_86_cpp1_ii_0aea0a57_7240729pow_tensor_scalar_kernel_implIffEEvRNS_18TensorIteratorBaseET0_EUlfE_NS_6detail5ArrayIPcLi2EEEEEviS6_T1_
+                    0.00%  30.207us         8  3.7750us  3.0080us  6.1440us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_22reciprocal_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE_clEvENKUlvE2_clEvEUlfE_NS_6detail5ArrayIPcLi2EEE23TrivialOffsetCalculatorILi1EjESC_NS0_6memory12LoadWithCastILi1EEENSD_13StoreWithCastEEEviT_T0_T1_T2_T3_T4_
+                    0.00%  30.174us        10  3.0170us  2.8800us  3.1680us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, float, at::native::AddFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+                    0.00%  29.311us         4  7.3270us  4.4160us  10.272us  void at::native::reduce_kernel<int=512, int=1, at::native::ReduceOp<float, at::native::MeanOps<float, float>, unsigned int, float, int=4>>(float)
+                    0.00%  26.015us         2  13.007us  9.6950us  16.320us  void _GLOBAL__N__54_tmpxft_000120b7_00000000_14_SoftMax_compute_86_cpp1_ii_9f978f63::softmax_warp_forward<c10::Half, float, float, int=5, bool=0>(float*, c10::Half const *, int, int, int)
+                    0.00%  22.753us         9  2.5280us  2.2400us  3.8080us  void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<long>, at::detail::Array<char*, int=1>>(int, long, at::native::FillFunctor<long>)
+                    0.00%  10.880us         3  3.6260us  2.4000us  5.1840us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, bool, at::native::CompareEqFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+                    0.00%  10.592us         3  3.5300us  2.4320us  4.3840us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<long, long, bool, at::native::CompareGTFunctor<long>>, at::detail::Array<char*, int=2>>(int, long, long)
+                    0.00%  7.0730us         2  3.5360us  2.6570us  4.4160us  void at::native::unrolled_elementwise_kernel<at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>, at::detail::Array<char*, int=2>, TrivialOffsetCalculator<int=1, unsigned int>, TrivialOffsetCalculator<int=1, unsigned int>, at::native::memory::LoadWithCast<int=1>, at::native::memory::StoreWithCast>(int, float, float, float, float, at::native::MulFunctor<float>, at::native::BUnaryFunctor<float, float, float, at::native::MulFunctor<float>>)
+      API calls:   67.58%  20.0904s    375016  53.572us  3.5950us  67.992ms  cudaLaunchKernel
+                   13.28%  3.94817s    168141  23.481us  4.5590us  81.430ms  cudaMemcpyAsync
+                   11.86%  3.52445s    124210  28.374us  1.1210us  332.49ms  cudaStreamSynchronize
+                    2.15%  639.50ms   1059460     603ns     442ns  3.7859ms  cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+                    1.59%  472.97ms        49  9.6524ms  1.4490us  193.62ms  cudaFree
+                    1.53%  453.52ms   1078116     420ns     286ns  2.5815ms  cudaGetDevice
+                    0.43%  128.42ms    154591     830ns     573ns  2.4618ms  cudaEventRecord
+                    0.37%  109.17ms    151975     718ns     486ns  645.38us  cudaEventCreateWithFlags
+                    0.32%  94.811ms    344777     274ns     130ns  3.7594ms  cudaGetLastError
+                    0.31%  92.013ms    151898     605ns     445ns  2.4787ms  cudaEventDestroy
+                    0.29%  85.414ms       870  98.177us  6.5750us  17.691ms  cudaMemcpy2DAsync
+                    0.07%  21.133ms     18280  1.1560us     651ns  153.50us  cudaStreamWaitEvent
+                    0.07%  19.958ms        35  570.22us  5.2660us  1.7114ms  cudaHostAlloc
+                    0.07%  19.830ms       128  154.92us  3.3100us  1.6071ms  cudaMalloc
+                    0.02%  4.8534ms      2251  2.1560us  1.9940us  20.279us  cudaFuncGetAttributes
+                    0.01%  3.9455ms       323  12.215us  2.6750us  111.80us  cudaMemsetAsync
+                    0.01%  3.8028ms      1250  3.0420us  1.0850us  209.44us  cudaEventQuery
+                    0.01%  3.1910ms       568  5.6180us  2.4250us  87.051us  cudaStreamDestroy
+                    0.01%  2.9333ms      4234     692ns     339ns  492.32us  cudaSetDevice
+                    0.01%  1.8908ms       300  6.3020us  1.8030us  167.30us  cudaStreamCreate
+                    0.01%  1.5512ms       272  5.7030us  1.7210us  198.88us  cudaStreamCreateWithPriority
+                    0.01%  1.5136ms       997  1.5180us     492ns  26.810us  cudaStreamIsCapturing
+                    0.00%  888.07us       946     938ns     615ns  17.233us  cudaStreamGetCaptureInfo
+                    0.00%  744.86us        84  8.8670us  2.1890us  123.42us  cudaStreamCreateWithFlags
+                    0.00%  508.84us       392  1.2980us     163ns  63.041us  cuDeviceGetAttribute
+                    0.00%  424.01us       240  1.7660us     603ns  16.253us  cudaPointerGetAttributes
+                    0.00%  310.64us         2  155.32us  137.52us  173.13us  cudaGetDeviceProperties
+                    0.00%  259.33us        34  7.6270us  6.2780us  22.595us  cudaMemcpy
+                    0.00%  251.11us        22  11.414us  5.7280us  68.635us  cudaDeviceSynchronize
+                    0.00%  183.46us       730     251ns     134ns  1.2130us  cuGetProcAddress
+                    0.00%  168.41us        22  7.6540us  3.3630us  39.408us  cudaEventCreate
+                    0.00%  99.731us        28  3.5610us     197ns  48.948us  cuDevicePrimaryCtxGetState
+                    0.00%  71.936us         4  17.984us  11.914us  27.983us  cuDeviceGetName
+                    0.00%  32.877us        54     608ns     303ns  2.7260us  cudaDeviceGetAttribute
+                    0.00%  13.873us         1  13.873us  13.873us  13.873us  cudaDeviceGetPCIBusId
+                    0.00%  11.988us         2  5.9940us  5.5810us  6.4070us  cudaEventSynchronize
+                    0.00%  5.0400us         2  2.5200us  2.4390us  2.6010us  cuInit
+                    0.00%  3.9730us         2  1.9860us  1.8140us  2.1590us  cudaDeviceGetStreamPriorityRange
+                    0.00%  3.8690us         2  1.9340us  1.3590us  2.5100us  cudaHostGetDevicePointer
+                    0.00%  2.2060us         3     735ns     241ns  1.6840us  cuDeviceGetCount
+                    0.00%  1.6360us         4     409ns     280ns     532ns  cuDeviceTotalMem
+                    0.00%  1.5550us         3     518ns     294ns     793ns  cudaDriverGetVersion
+                    0.00%  1.2640us         1  1.2640us  1.2640us  1.2640us  cudaGetSymbolAddress
+                    0.00%  1.1920us         4     298ns     201ns     354ns  cuDeviceGet
+                    0.00%  1.0080us         4     252ns     224ns     275ns  cuDeviceGetUuid
+                    0.00%     884ns         2     442ns     404ns     480ns  cudaGetDeviceCount
+                    0.00%     421ns         2     210ns     200ns     221ns  cuDriverGetVersion
+
+==6624== NVTX result:
+==6624==   Thread "<unnamed>" (id = 1756026624)
+==6624==     Domain "NCCL"
+==6624==       Range "ncclGroupEnd"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  3.9269ms       590  6.6550us  5.6930us  23.641us  ncclGroupEnd
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclGroupStart"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  1.0249ms       590  1.7370us  1.3660us  34.683us  ncclGroupStart
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclReduce"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  441.49us       590     748ns     556ns  16.600us  ncclReduce
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==   Thread "<unnamed>" (id = 2836701376)
+==6624==     Domain "NCCL"
+==6624==       Range "ncclAllGather"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  6.6150us         9     735ns     654ns     961ns  ncclAllGather
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclAllReduce"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  79.866us        49  1.6290us     597ns  9.2000us  ncclAllReduce
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclBroadcast"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  226.46us       298     759ns     494ns  13.624us  ncclBroadcast
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclCommInitRank"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  5.5280us         1  5.5280us  5.5280us  5.5280us  ncclCommInitRank
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+
+==6624==       Range "ncclGroupEnd"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  30.302ms       357  84.879us  4.9800us  27.627ms  ncclGroupEnd
+ GPU activities:  100.00%  23.456us         9  2.6060us  2.3360us  3.4880us  [CUDA memcpy DtoD]
+      API calls:  100.00%  182.87us         9  20.318us  14.749us  30.204us  cudaMemcpyAsync
+
+==6624==       Range "ncclGroupStart"
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+          Range:  100.00%  749.96us       357  2.1000us  1.2090us  34.317us  ncclGroupStart
+No kernels were profiled in this range.
+No API activities were profiled in this range.
+

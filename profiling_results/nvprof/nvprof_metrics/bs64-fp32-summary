@@ -1,0 +1,18 @@
+==41475== NVPROF is profiling process 41475, command: python train.py +configs=librispeech
+==41475== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==41475== Profiling application: python train.py +configs=librispeech
+==41475== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   97.50%  5.3647ms         5  1.0729ms  983.64us  1.1889ms  void at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long>(float*, at::native::_GLOBAL__N__54_tmpxft_0001171a_00000000_14_LossCTC_compute_86_cpp1_ii_88d8892b::ctc_loss_log_alpha_gpu_kernel<float, long> const *, long const *, long, long const *, long const , long, float, long, long, long, long, long, long, long const , long, long, long)
+                    0.86%  47.295us         5  9.4590us  9.2160us  9.6000us  _ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIfNS0_14func_wrapper_tIfZNS0_11sum_functorIfffEclERNS_14TensorIteratorEEUlffE_EEjfLi4EEEEEvT1_
+                    0.48%  26.656us         5  5.3310us  5.1200us  5.5680us  _ZN2at6native27unrolled_elementwise_kernelIZZZNS0_84_GLOBAL__N__60_tmpxft_00012309_00000000_14_TensorCompare_compute_86_cpp1_ii_d0af11f717where_kernel_implERNS_14TensorIteratorEN3c1010ScalarTypeEENKUlvE_clEvENKUlvE6_clEvEUlbffE_NS_6detail5ArrayIPcLi4EEE16OffsetCalculatorILi3EjLb0EESE_ILi1EjLb0EENS0_6memory15LoadWithoutCastENSH_16StoreWithoutCastEEEviT_T0_T1_T2_T3_T4_
+                    0.38%  20.960us         5  4.1920us  3.7760us  4.4800us  void at::native::vectorized_elementwise_kernel<int=4, at::native::BUnaryFunctor<float, float, bool, at::native::CompareEqFunctor<float>>, at::detail::Array<char*, int=2>>(int, float, float)
+                    0.29%  15.998us        15  1.0660us     928ns  1.6310us  [CUDA memcpy HtoD]
+                    0.27%  14.880us         5  2.9760us  2.9440us  3.0720us  void at::native::vectorized_elementwise_kernel<int=4, at::native::FillFunctor<float>, at::detail::Array<char*, int=1>>(int, float, at::native::FillFunctor<float>)
+                    0.21%  11.776us         5  2.3550us  1.2150us  3.2000us  [CUDA memcpy DtoH]
+      API calls:   99.78%  487.51ms        20  24.375ms  5.4000us  99.913ms  cudaMemcpyAsync
+                    0.13%  636.14us        25  25.445us  12.466us  66.022us  cudaLaunchKernel
+                    0.05%  225.38us       355     634ns     302ns  12.941us  cudaGetDevice
+                    0.04%  191.99us        20  9.5990us  5.3500us  51.197us  cudaStreamSynchronize
+                    0.00%  19.275us         1  19.275us  19.275us  19.275us  cuDeviceGetCount
+                    0.00%  9.6470us        25     385ns     308ns     681ns  cudaGetLastError

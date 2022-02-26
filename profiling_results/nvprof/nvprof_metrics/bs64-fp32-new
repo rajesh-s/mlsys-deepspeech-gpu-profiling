@@ -1,0 +1,5 @@
+==37882== NVPROF is profiling process 37882, command: python train.py +configs=librispeech
+==37882== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==37882== Profiling application: python train.py +configs=librispeech
+==37882== Profiling result:
+No events/metrics were profiled.
